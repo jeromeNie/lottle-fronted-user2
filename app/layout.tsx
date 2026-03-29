@@ -4,6 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "全网最准",
   description: "",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml", sizes: "any" }],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export const viewport: Viewport = {

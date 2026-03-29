@@ -1,26 +1,329 @@
-@import "tailwindcss";
+/* 参考 http://544123.xyz/top.asp + /static/sj18/css/style.css 主结构 */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  height: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100%;
+  line-height: 20px;
+  font-size: 14px;
+  font-family: "Lantinghei SC", "PingFang SC", "Microsoft YaHei", Helvetica, Arial,
+    sans-serif;
+  background: linear-gradient(160deg, #c8e0f5 0%, #e8f4fc 35%, #d4e8f7 100%);
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+img {
+  border: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+ul {
+  list-style: none;
+}
+
+.clearfix::after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.cgi-body {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  background: #fff;
+}
+
+.cgi-head-home {
+  min-height: 2px;
+}
+
+/* 顶部双行导航（原站 #nav2 .nav2） */
+.nav2 {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 2px;
+  font-size: 13px;
+  background: #fff;
+  text-decoration: none;
+}
+
+.nav2 ul {
+  padding: 2px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav2 ul li {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 2px;
+}
+
+.nav2 ul li a {
+  display: block;
+  padding: 3px 0;
+  text-align: center;
+  color: #fff;
+  border-radius: 50px;
+  background: #1e90ff;
+  cursor: pointer;
+}
+
+.nav2 ul li a:hover {
+  background: #87ceeb;
+}
+
+.nav2[data-fixed="fixed"] {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 800px;
+  z-index: 100;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (min-width: 800px) {
+  .nav2 {
+    padding: 4px;
+    font-size: 16px;
+  }
+
+  .nav2 ul {
+    padding: 4px 0;
+  }
+
+  .nav2 ul li {
+    padding: 0 4px;
+  }
+
+  .nav2 ul li a {
+    padding: 5px 0;
+  }
+}
+
+.cgi-wrapper {
+  padding: 0 10px;
+}
+
+@media screen and (max-width: 800px) {
+  .cgi-wrapper {
+    padding: 0 5px;
+  }
+}
+
+/* 主内容区左右留白（对齐原站 .cgi-wrap） */
+.cgi-content {
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 800px) {
+  .cgi-content {
+    padding: 0 5px;
+  }
+}
+
+.cgi-subNav {
+  height: 45px;
+  border-bottom: solid 1px #ddd;
+}
+
+.cgi-subNav ul li {
+  float: left;
+  width: 20%;
+}
+
+.cgi-subNav ul li a {
+  height: 43px;
+  line-height: 43px;
+  font-size: 14px;
+  color: #900;
+  text-align: center;
+  border-bottom: solid 2px #fff;
+  display: block;
+  overflow: hidden;
+}
+
+.cgi-subNav ul li a.on {
+  color: #900;
+  border-color: #900;
+}
+
+.white-box {
+  margin: 1px auto;
+  padding: 5px;
+  border: solid 1px #ddd;
+  border-radius: 5px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.mt10 {
+  margin-top: 8px;
+}
+
+.kjIframe {
+  display: block;
+  width: 100%;
+  height: 220px;
+  border: none;
+}
+
+@media (max-width: 960px) {
+  .kjIframe {
+    height: 220px;
+  }
+}
+
+@media (max-width: 420px) {
+  .kjIframe {
+    height: 180px;
+  }
+}
+
+/* 预测表（原站 table td 内联风格） */
+.pred-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.pred-table td {
+  margin: 0;
+  padding: 3px 2px;
+  border: 1px solid rgb(229, 229, 229);
+  word-break: break-all;
+  vertical-align: middle;
+}
+
+.pred-table .pred-head {
+  background: #ff0000;
+  height: 32px;
+}
+
+.pred-table .pred-head h2,
+.pred-headText {
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  color: rgb(255, 253, 0);
+  margin: 0;
+  padding: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.pred-table .pred-row {
+  min-height: 30px;
+}
+
+.pred-label {
+  color: #008000;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.pred-zodiac {
+  color: #0000ff;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.pred-nums {
+  color: #ff00ff;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.pred-hit {
+  background-color: #ffff00;
+  color: #ff0000;
+}
+
+/* 高手榜列表 */
+.cgi-gsb ul li {
+  line-height: 40px;
+  font-size: 14px;
+  border-bottom: 1px #eaeaea solid;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.cgi-gsb ul li a {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.cgi-gsb-tit {
+  height: 20px;
+  line-height: 20px;
+  margin-right: 1px;
+  padding: 0 5px;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 5px;
+  background: #f00;
+  display: inline-block;
+}
+
+.cgi-zuozhe {
+  float: right;
+  margin-left: 10px;
+  font-size: 14px;
+  color: #999;
+}
+
+.section-title {
+  background: linear-gradient(to top, #d20d00, #f25452);
+  color: #fff;
+  text-align: center;
+  padding: 10px 8px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 5px 5px 0 0;
+  margin: -5px -5px 8px -5px;
+}
+
+.section-note {
+  padding: 12px;
+  color: #666;
+  font-size: 14px;
+  text-align: center;
 }

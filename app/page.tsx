@@ -1,65 +1,113 @@
-import Image from "next/image";
+import Link from "next/link";
+import { NavSticky } from "@/components/NavSticky";
+import { YixiaoPanel } from "@/components/YixiaoPanel";
+import { PlaceholderSection } from "@/components/PlaceholderSection";
+import { GSB_SAMPLES, NAV_ROW1, NAV_ROW2 } from "@/data/predictionBlocks";
+
+const KJ_IFRAME_SRC = "http://hk566kk.xyz/kj.asp";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="cgi-body">
+      <header className="cgi-head-home" aria-hidden />
+
+      <NavSticky>
+        <ul>
+          {NAV_ROW1.map((x) => (
+            <li key={x.href}>
+              <a href={x.href}>{x.label}</a>
+            </li>
+          ))}
+        </ul>
+        <ul>
+          {NAV_ROW2.map((x) => (
+            <li key={x.href}>
+              <a href={x.href}>{x.label}</a>
+            </li>
+          ))}
+        </ul>
+      </NavSticky>
+
+      <div className="cgi-wrapper">
+        <div className="cgi-subNav">
+          <ul className="clearfix">
+            <li>
+              <Link className="on" href="/">
+                网站首页
+              </Link>
+            </li>
+            <li>
+              <a href="http://hk566kk.xyz/jl/jl.asp" target="_blank" rel="noreferrer">
+                开奖记录
+              </a>
+            </li>
+          </ul>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </div>
+
+      <div className="cgi-content">
+        <div className="white-box">
+          <iframe
+            title="开奖直播"
+            className="kjIframe"
+            name="I1"
+            marginWidth={1}
+            marginHeight={0}
+            height={220}
+            width="100%"
+            scrolling="no"
+            frameBorder={0}
+            src={KJ_IFRAME_SRC}
+          />
         </div>
-      </main>
+
+        <div className="white-box mt10" id="1x1m">
+          <YixiaoPanel />
+        </div>
+
+        <PlaceholderSection id="24mzt" title="24码中特" />
+        <PlaceholderSection id="jxzt" title="九肖中特" />
+        <PlaceholderSection id="gpjx" title="五肖中特" />
+        <PlaceholderSection id="xq4ie" title="家禽野兽" />
+        <PlaceholderSection id="fslx" title="复式连肖" />
+        <PlaceholderSection id="hdui" title="单双两头" />
+        <PlaceholderSection id="ccih" title="综合绝杀" />
+        <PlaceholderSection id="ujlh" title="合双六肖" />
+        <PlaceholderSection id="jy4x" title="家野四肖" />
+
+        <div className="white-box mt10" aria-hidden>
+          <div
+            style={{
+              minHeight: 120,
+              background: "#1a1a1a",
+              borderRadius: 4,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#888",
+              fontSize: 14,
+            }}
+          >
+            广告图位（原站 gsb.gif）
+          </div>
+        </div>
+
+        <div className="white-box mt10">
+          <div className="cgi-gsb">
+            <ul>
+              {GSB_SAMPLES.map((row, i) => (
+                <li key={i}>
+                  <span className="cgi-zuozhe">{row.author}</span>
+                  <a href={row.href}>
+                    <span className="cgi-gsb-tit">高手榜</span>
+                    {row.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

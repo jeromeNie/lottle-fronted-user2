@@ -11,6 +11,7 @@ RUN corepack enable pnpm 2>/dev/null || true && \
     (pnpm install --frozen-lockfile 2>/dev/null || npm ci 2>/dev/null || npm install)
 
 COPY . .
+# package.json 使用 next build --webpack，避免 Next 16 默认 Turbopack 在 Docker 中 panic
 RUN npm run build
 
 FROM node:20-alpine AS runner

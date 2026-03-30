@@ -56,3 +56,9 @@ export function fetchDrawByIssue(
     `/api/draws/by-issue?lottery_type_code=${encodeURIComponent(code)}&issue=${issue}`,
   );
 }
+
+export function fetchLatestDraw(code: LotteryCode): Promise<Draw> {
+  return getJson(
+    `/api/draws/latest?lottery_type_code=${encodeURIComponent(code)}`,
+  );
+}

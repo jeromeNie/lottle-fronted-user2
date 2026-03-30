@@ -2,9 +2,9 @@ import Link from "next/link";
 import { NavSticky } from "@/components/NavSticky";
 import { YixiaoPanel } from "@/components/YixiaoPanel";
 import { PlaceholderSection } from "@/components/PlaceholderSection";
+import { LatestDrawPanel } from "@/components/LatestDrawPanel";
+import { M24Panel } from "@/components/M24Panel";
 import { GSB_SAMPLES, NAV_ROW1, NAV_ROW2 } from "@/data/predictionBlocks";
-
-const KJ_IFRAME_SRC = "http://hk566kk.xyz/kj.asp";
 
 export default function Home() {
   return (
@@ -37,9 +37,9 @@ export default function Home() {
               </Link>
             </li>
             <li>
-              <a href="http://hk566kk.xyz/jl/jl.asp" target="_blank" rel="noreferrer">
+              <Link href="/prediction/history?lottery_type_code=hk_daily">
                 开奖记录
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -47,25 +47,14 @@ export default function Home() {
 
       <div className="cgi-content">
         <div className="white-box">
-          <iframe
-            title="开奖直播"
-            className="kjIframe"
-            name="I1"
-            marginWidth={1}
-            marginHeight={0}
-            height={220}
-            width="100%"
-            scrolling="no"
-            frameBorder={0}
-            src={KJ_IFRAME_SRC}
-          />
+          <LatestDrawPanel />
         </div>
 
         <div className="white-box mt10" id="1x1m">
           <YixiaoPanel />
         </div>
 
-        <PlaceholderSection id="24mzt" title="24码中特" />
+        <M24Panel />
         <PlaceholderSection id="jxzt" title="九肖中特" />
         <PlaceholderSection id="gpjx" title="五肖中特" />
         <PlaceholderSection id="xq4ie" title="家禽野兽" />

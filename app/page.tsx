@@ -1,9 +1,16 @@
 import Link from "next/link";
 import { NavSticky } from "@/components/NavSticky";
 import { YixiaoPanel } from "@/components/YixiaoPanel";
-import { PlaceholderSection } from "@/components/PlaceholderSection";
 import { LatestDrawPanel } from "@/components/LatestDrawPanel";
 import { M24Panel } from "@/components/M24Panel";
+import { JxztPanel } from "@/components/JxztPanel";
+import { QxztPanel } from "@/components/QxztPanel";
+import { WjsxPanel } from "@/components/WjsxPanel";
+import { FslxPanel } from "@/components/FslxPanel";
+import { JxstPanel } from "@/components/JxstPanel";
+import { ZhjsPanel } from "@/components/ZhjsPanel";
+import { SssxPanel } from "@/components/SssxPanel";
+import { JysxPanel } from "@/components/JysxPanel";
 import { GSB_SAMPLES, NAV_ROW1, NAV_ROW2 } from "@/data/predictionBlocks";
 
 export default function Home() {
@@ -55,14 +62,20 @@ export default function Home() {
         </div>
 
         <M24Panel />
-        <PlaceholderSection id="jxzt" title="九肖中特" />
-        <PlaceholderSection id="gpjx" title="五肖中特" />
-        <PlaceholderSection id="xq4ie" title="家禽野兽" />
-        <PlaceholderSection id="fslx" title="复式连肖" />
-        <PlaceholderSection id="hdui" title="单双两头" />
-        <PlaceholderSection id="ccih" title="综合绝杀" />
-        <PlaceholderSection id="ujlh" title="合双六肖" />
-        <PlaceholderSection id="jy4x" title="家野四肖" />
+        <div className="white-box mt10" aria-label="guanggao1">
+          <img src="/guanggao1.gif" alt="广告1" className="gg-gif" />
+        </div>
+        <div className="white-box mt10" aria-label="guanggao2">
+          <img src="/guanggao2.gif" alt="广告2" className="gg-gif" />
+        </div>
+        <JxztPanel />
+        <QxztPanel />
+        <WjsxPanel />
+        <FslxPanel />
+        <JxstPanel />
+        <ZhjsPanel />
+        <SssxPanel />
+        <JysxPanel />
 
         <div className="white-box mt10" aria-hidden>
           <div

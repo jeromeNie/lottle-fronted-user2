@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchDrawByIssue, fetchDrawHistory, type Draw } from "@/lib/api";
+import { getRecentHkDailyDraws } from "@/lib/hkDailyDrawsCache";
 import { M24_PRED_TEMPLATES } from "@/data/predictionBlocks";
 import { buildM24RowsFromHkDaily } from "@/lib/m24FromDraws";
 
@@ -18,12 +18,7 @@ export function M24Panel() {
     setError("");
     (async () => {
       try {
-        const h = await fetchDrawHistory(HK_DAILY, 1, 9);
-        const briefs = h.items ?? [];
-        const full = await Promise.all(
-          briefs.map((b) => fetchDrawByIssue(HK_DAILY, b.issue_number).catch(() => null)),
-        );
-        const draws = full.filter((x): x is Draw => x !== null);
+        const draws = await getRecentHkDailyDraws(9);
         if (draws.length === 0) {
           if (!cancelled) {
             setError("暂无香港百乐彩开奖数据");

@@ -6,7 +6,7 @@ import {
   type IssueBlock,
   YIXIAO_PRED_TEMPLATES,
 } from "@/data/predictionBlocks";
-import { fetchDrawByIssue, fetchDrawHistory, type Draw } from "@/lib/api";
+import { getRecentHkDailyDraws } from "@/lib/hkDailyDrawsCache";
 import { buildYixiaoBlocksFromHkDaily } from "@/lib/yixiaoFromDraws";
 
 const HK_DAILY = "hk_daily" as const;
@@ -22,31 +22,10 @@ export function YixiaoPanel() {
 
     (async () => {
       try {
-        const h = await fetchDrawHistory(HK_DAILY, 1, 9);
-        const briefs = h.items ?? [];
-        if (briefs.length === 0) {
-          if (!cancelled) {
-            setError("暂无香港百乐彩开奖数据");
-            setBlocks([]);
-          }
-          return;
-        }
-
-        const full = await Promise.all(
-          briefs.map((b) =>
-            fetchDrawByIssue(HK_DAILY, b.issue_number).catch(() => null),
-          ),
-        );
-
-        const draws: Draw[] = [];
-        for (let i = 0; i < briefs.length; i++) {
-          const d = full[i];
-          if (d) draws.push(d);
-        }
-
+        const draws = await getRecentHkDailyDraws(9);
         if (draws.length === 0) {
           if (!cancelled) {
-            setError("开奖详情加载失败");
+            setError("暂无香港百乐彩开奖数据");
             setBlocks([]);
           }
           return;

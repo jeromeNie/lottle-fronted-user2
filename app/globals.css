@@ -445,6 +445,8 @@ ul {
   background: #f3f4f6;
   text-align: center;
   padding: 6px 4px 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .m24-issue {
@@ -458,6 +460,8 @@ ul {
   color: #166534;
   font-size: 38px;
   line-height: 1.28;
+  white-space: nowrap;
+  min-width: max-content;
 }
 
 .m24-hit {
@@ -487,6 +491,29 @@ ul {
   border-radius: 4px;
 }
 
+.section-skeleton {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: linear-gradient(
+    90deg,
+    #f3f4f6 25%,
+    #e5e7eb 37%,
+    #f3f4f6 63%
+  );
+  background-size: 400% 100%;
+  animation: sectionShimmer 1.25s ease-in-out infinite;
+  min-height: 180px;
+}
+
+@keyframes sectionShimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
 .jxzt-table {
   width: 100%;
   border: 1px solid #e5e7eb;
@@ -507,6 +534,8 @@ ul {
   border-top: 1px solid #d1d5db;
   background: #f3f4f6;
   padding: 9px 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .jxzt-row {
@@ -515,6 +544,8 @@ ul {
   font-size: 22px;
   line-height: 1.5;
   font-weight: 700;
+  white-space: nowrap;
+  min-width: max-content;
 }
 
 .jxzt-issue {
@@ -579,6 +610,8 @@ ul {
   border-top: 1px solid #d1d5db;
   background: #f3f4f6;
   padding: 9px 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .qxzt-row {
@@ -587,6 +620,8 @@ ul {
   font-size: 38px;
   line-height: 1.45;
   font-weight: 500;
+  white-space: nowrap;
+  min-width: max-content;
 }
 
 .qxzt-issue {
@@ -647,6 +682,8 @@ ul {
   border-top: 1px solid #d1d5db;
   background: #f3f4f6;
   padding: 9px 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .wjsx-row {
@@ -655,6 +692,8 @@ ul {
   font-size: 38px;
   line-height: 1.45;
   font-weight: 500;
+  white-space: nowrap;
+  min-width: max-content;
 }
 
 .wjsx-issue {
@@ -717,6 +756,8 @@ ul {
   border-top: 1px solid #d1d5db;
   background: #f3f4f6;
   padding: 9px 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .fslx-row {
@@ -725,6 +766,8 @@ ul {
   font-size: 38px;
   line-height: 1.45;
   font-weight: 600;
+  white-space: nowrap;
+  min-width: max-content;
 }
 
 .fslx-issue,
@@ -792,6 +835,8 @@ ul {
   border-top: 1px solid #d1d5db;
   background: #f3f4f6;
   padding: 9px 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .jxst-row {
@@ -800,6 +845,8 @@ ul {
   font-size: 38px;
   line-height: 1.45;
   font-weight: 600;
+  white-space: nowrap;
+  min-width: max-content;
 }
 
 .jxst-label {
@@ -863,6 +910,8 @@ ul {
   border-top: 1px solid #d1d5db;
   background: #f3f4f6;
   padding: 9px 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .zhjs-row {
@@ -871,6 +920,8 @@ ul {
   font-size: 34px;
   line-height: 1.45;
   font-weight: 600;
+  white-space: nowrap;
+  min-width: max-content;
 }
 
 .zhjs-issue {
@@ -935,6 +986,8 @@ ul {
   border-top: 1px solid #d1d5db;
   background: #f3f4f6;
   padding: 9px 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .sssx-row {
@@ -943,6 +996,8 @@ ul {
   font-size: 34px;
   line-height: 1.45;
   font-weight: 600;
+  white-space: nowrap;
+  min-width: max-content;
 }
 
 .sssx-issue {
@@ -1008,6 +1063,8 @@ ul {
   border-top: 1px solid #d1d5db;
   background: #f3f4f6;
   padding: 9px 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .jysx-row {
@@ -1016,6 +1073,8 @@ ul {
   font-size: 34px;
   line-height: 1.45;
   font-weight: 600;
+  white-space: nowrap;
+  min-width: max-content;
 }
 
 .jysx-label {
@@ -1067,7 +1126,7 @@ ul {
   }
 
   .m24-line {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .jxzt-head {
@@ -1075,7 +1134,7 @@ ul {
   }
 
   .jxzt-row {
-    font-size: 19px;
+    font-size: 15px;
   }
 
   .qxzt-head {
@@ -1083,7 +1142,7 @@ ul {
   }
 
   .qxzt-row {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .wjsx-head {
@@ -1091,7 +1150,7 @@ ul {
   }
 
   .wjsx-row {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .fslx-head {
@@ -1099,7 +1158,7 @@ ul {
   }
 
   .fslx-row {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .jxst-head {
@@ -1107,7 +1166,7 @@ ul {
   }
 
   .jxst-row {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .zhjs-head {
@@ -1115,7 +1174,7 @@ ul {
   }
 
   .zhjs-row {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .sssx-head {
@@ -1123,7 +1182,7 @@ ul {
   }
 
   .sssx-row {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .jysx-head {
@@ -1131,6 +1190,6 @@ ul {
   }
 
   .jysx-row {
-    font-size: 16px;
+    font-size: 15px;
   }
 }

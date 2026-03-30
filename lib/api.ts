@@ -32,10 +32,37 @@ export interface DrawHistoryResponse {
   page_size?: number;
 }
 
+const CACHE_TTL_MS = 15000;
+const responseCache = new Map<string, { expiresAt: number; data: unknown }>();
+const inFlight = new Map<string, Promise<unknown>>();
+
 async function getJson<T>(path: string): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, { cache: "no-store" });
-  if (!res.ok) throw new Error(`API ${res.status}`);
-  return res.json();
+  const url = `${API_BASE}${path}`;
+  const now = Date.now();
+  const cached = responseCache.get(url);
+  if (cached && cached.expiresAt > now) {
+    return cached.data as T;
+  }
+
+  const pending = inFlight.get(url);
+  if (pending) {
+    return pending as Promise<T>;
+  }
+
+  const req = (async () => {
+    const res = await fetch(url, { cache: "no-store" });
+    if (!res.ok) throw new Error(`API ${res.status}`);
+    const data = (await res.json()) as T;
+    responseCache.set(url, { expiresAt: Date.now() + CACHE_TTL_MS, data });
+    return data;
+  })();
+
+  inFlight.set(url, req as Promise<unknown>);
+  try {
+    return await req;
+  } finally {
+    inFlight.delete(url);
+  }
 }
 
 export function fetchDrawHistory(

@@ -5,6 +5,7 @@ import {
   type IssueBlock,
   type YixiaoPredTemplate,
 } from "@/data/predictionBlocks";
+import { computeGsbIssueNumber } from "@/lib/gsbIssue";
 
 /** 从开奖记录取特码（用于与预测比对，仅特码命中才高亮） */
 export function specialFromDraw(draw: Draw): { zodiac: string; num: string } {
@@ -28,7 +29,11 @@ export function buildYixiaoBlocksFromHkDaily(
   if (recentDrawsNewestFirst.length === 0) return [];
 
   const upcomingDisplay = issueLabelForDraw(
-    recentDrawsNewestFirst[0].issue_number + 1,
+    computeGsbIssueNumber(
+      recentDrawsNewestFirst[0].issue_number,
+      recentDrawsNewestFirst[0].draw_date,
+      recentDrawsNewestFirst[0].draw_time,
+    ),
   );
 
   const completedSlots = recentDrawsNewestFirst.map((d) => ({

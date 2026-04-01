@@ -1,5 +1,6 @@
 import { issueLabelForDraw, type WjsxTemplate } from "@/data/predictionBlocks";
 import type { Draw } from "@/lib/api";
+import { computeGsbIssueNumber } from "@/lib/gsbIssue";
 import { specialFromDraw } from "@/lib/yixiaoFromDraws";
 
 export type WjsxRow = {
@@ -19,7 +20,11 @@ export function buildWjsxRowsFromHkDaily(
   if (recentDrawsNewestFirst.length === 0) return [];
 
   const upcomingIssueDisplay = issueLabelForDraw(
-    recentDrawsNewestFirst[0].issue_number + 1,
+    computeGsbIssueNumber(
+      recentDrawsNewestFirst[0].issue_number,
+      recentDrawsNewestFirst[0].draw_date,
+      recentDrawsNewestFirst[0].draw_time,
+    ),
   );
   const completed = recentDrawsNewestFirst.slice(0, 19).map((d) => ({
     issueDisplay: issueLabelForDraw(d.issue_number),

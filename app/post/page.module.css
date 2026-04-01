@@ -1,0 +1,112 @@
+.page {
+  min-height: 100vh;
+  background: #f0ede3;
+}
+
+.topBar {
+  background: linear-gradient(#f14646, #cc1515);
+  color: #fff;
+  padding: 10px 12px;
+  border-bottom: 1px solid #b50000;
+}
+
+.back {
+  color: #fff;
+  text-decoration: none;
+  font-size: 22px;
+}
+
+.card {
+  max-width: 960px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid #ddd;
+}
+
+.headline {
+  font-size: 34px;
+  line-height: 1.4;
+  font-weight: 700;
+  padding: 20px 16px;
+  border-bottom: 1px solid #ececec;
+}
+
+.authorLine {
+  padding: 16px;
+  color: #333;
+  font-size: 30px;
+}
+
+.authorName {
+  color: #2a8d3e;
+}
+
+.loading {
+  padding: 16px;
+  color: #666;
+  font-size: 28px;
+}
+
+.row {
+  padding: 0 16px 8px;
+  font-size: 44px;
+  line-height: 1.35;
+  color: #333;
+}
+
+.issue {
+  color: #333;
+  margin-right: 2px;
+}
+
+.topic {
+  color: #bb14c9;
+  font-weight: 700;
+}
+
+.bracket {
+  color: #d39d2e;
+}
+
+.tails {
+  color: #d39d2e;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.open {
+  color: #8b1420;
+  margin-left: 8px;
+}
+
+.result {
+  color: #5d0010;
+}
+
+.hit {
+  background: #ffeb63;
+  color: #8b2f00;
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+@media (max-width: 768px) {
+  .headline {
+    font-size: 18px;
+    padding: 10px 8px;
+  }
+
+  .authorLine {
+    font-size: 16px;
+    padding: 8px;
+  }
+
+  .row {
+    font-size: 16px;
+    padding: 0 8px 6px;
+  }
+
+  .back {
+    font-size: 16px;
+  }
+}

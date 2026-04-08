@@ -7,6 +7,7 @@ import {
   YIXIAO_PRED_TEMPLATES,
 } from "@/data/predictionBlocks";
 import { getRecentHkDailyDraws } from "@/lib/hkDailyDrawsCache";
+import { fetchHkDailySitePayload } from "@/lib/hkDailySitePredictionApi";
 import { buildYixiaoBlocksFromHkDaily } from "@/lib/yixiaoFromDraws";
 
 const HK_DAILY = "hk_daily" as const;
@@ -22,6 +23,13 @@ export function YixiaoPanel() {
 
     (async () => {
       try {
+        const remote = await fetchHkDailySitePayload<IssueBlock[]>("yixiao");
+        if (!cancelled && remote && remote.length > 0) {
+          setBlocks(remote);
+          setError("");
+          return;
+        }
+
         const draws = await getRecentHkDailyDraws(9);
         if (draws.length === 0) {
           if (!cancelled) {

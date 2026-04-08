@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getRecentHkDailyDraws } from "@/lib/hkDailyDrawsCache";
+import { fetchHkDailySitePayload } from "@/lib/hkDailySitePredictionApi";
 import { SSSX_PRED_TEMPLATES } from "@/data/predictionBlocks";
 import { buildSssxRowsFromHkDaily } from "@/lib/sssxFromDraws";
 
@@ -18,6 +19,13 @@ export function SssxPanel() {
     setError("");
     (async () => {
       try {
+        const remote = await fetchHkDailySitePayload<ReturnType<typeof buildSssxRowsFromHkDaily>>("sssx");
+        if (!cancelled && remote && remote.length > 0) {
+          setRows(remote);
+          setLoading(false);
+          return;
+        }
+
         const draws = await getRecentHkDailyDraws(19);
         if (draws.length === 0) {
           if (!cancelled) {

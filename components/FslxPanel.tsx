@@ -2,10 +2,15 @@
 
 import { useEffect, useState } from "react";
 import { getRecentHkDailyDraws } from "@/lib/hkDailyDrawsCache";
+import { fetchHkDailySitePayload } from "@/lib/hkDailySitePredictionApi";
 import { FSLX_PRED_TEMPLATES } from "@/data/predictionBlocks";
 import { buildFslxRowsFromHkDaily } from "@/lib/fslxFromDraws";
 
 const HK_DAILY = "hk_daily" as const;
+
+function fslxHitSet(r: { hitSet: Set<string> | string[] }): Set<string> {
+  return r.hitSet instanceof Set ? r.hitSet : new Set(r.hitSet);
+}
 
 export function FslxPanel() {
   const [rows, setRows] = useState<ReturnType<typeof buildFslxRowsFromHkDaily>>([]);
@@ -18,6 +23,13 @@ export function FslxPanel() {
     setError("");
     (async () => {
       try {
+        const remote = await fetchHkDailySitePayload<ReturnType<typeof buildFslxRowsFromHkDaily>>("fslx");
+        if (!cancelled && remote && remote.length > 0) {
+          setRows(remote as ReturnType<typeof buildFslxRowsFromHkDaily>);
+          setLoading(false);
+          return;
+        }
+
         const draws = await getRecentHkDailyDraws(19);
         if (draws.length === 0) {
           if (!cancelled) {
@@ -67,7 +79,10 @@ export function FslxPanel() {
                     <span className="fslx-bracket">【</span>
                     <span className="fslx-zodiacs">
                       {r.zodiacs.map((z, i) => (
-                        <span key={`${r.issueDisplay}-${i}`} className={r.hitSet.has(z) ? "fslx-hit" : undefined}>
+                        <span
+                          key={`${r.issueDisplay}-${i}`}
+                          className={fslxHitSet(r).has(z) ? "fslx-hit" : undefined}
+                        >
                           {z}
                         </span>
                       ))}

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getRecentHkDailyDraws } from "@/lib/hkDailyDrawsCache";
+import { fetchHkDailySitePayload } from "@/lib/hkDailySitePredictionApi";
 import { M24_PRED_TEMPLATES } from "@/data/predictionBlocks";
 import { buildM24RowsFromHkDaily } from "@/lib/m24FromDraws";
 
@@ -18,6 +19,13 @@ export function M24Panel() {
     setError("");
     (async () => {
       try {
+        const remote = await fetchHkDailySitePayload<ReturnType<typeof buildM24RowsFromHkDaily>>("m24");
+        if (!cancelled && remote && remote.length > 0) {
+          setRows(remote);
+          setLoading(false);
+          return;
+        }
+
         const draws = await getRecentHkDailyDraws(9);
         if (draws.length === 0) {
           if (!cancelled) {

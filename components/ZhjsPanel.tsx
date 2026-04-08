@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getRecentHkDailyDraws } from "@/lib/hkDailyDrawsCache";
+import { fetchHkDailySitePayload } from "@/lib/hkDailySitePredictionApi";
 import { ZHJS_PRED_TEMPLATES } from "@/data/predictionBlocks";
 import { buildZhjsRowsFromHkDaily } from "@/lib/zhjsFromDraws";
 
@@ -18,6 +19,13 @@ export function ZhjsPanel() {
     setError("");
     (async () => {
       try {
+        const remote = await fetchHkDailySitePayload<ReturnType<typeof buildZhjsRowsFromHkDaily>>("zhjs");
+        if (!cancelled && remote && remote.length > 0) {
+          setRows(remote);
+          setLoading(false);
+          return;
+        }
+
         const draws = await getRecentHkDailyDraws(19);
         if (draws.length === 0) {
           if (!cancelled) {

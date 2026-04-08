@@ -5,7 +5,7 @@ export function issueLabelForDisplay(n: number): string {
 
 function parseDrawAt(drawDate: string, drawTime: string | null): Date | null {
   if (!drawDate) return null;
-  const time = (drawTime || "21:30:00").slice(0, 8);
+  const time = (drawTime || "22:30:00").slice(0, 8);
   const dt = new Date(`${drawDate}T${time}+08:00`);
   return Number.isNaN(dt.getTime()) ? null : dt;
 }
